@@ -1,37 +1,33 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-
-export const login = createAsyncThunk(
-    "user/login",
-    async () => {
-        const user = { name: 'lehoangvuvt' }
-        return user
-    }
-)
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    user: null,
-    status: 'idle'
-}
+  user: null,
+  error: null,
+  status: "idle",
+};
 
 const userSlice = createSlice({
-    name: 'userSlice',
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder
-            .addCase(login.pending, (state) => {
-                state.status = 'loading'
-            })
-            .addCase(login.fulfilled, (state, action) => {
-                state.status = 'success'
-                state.user = action.payload
-            })
-            .addCase(login.rejected, (state) => {
-                state.status = 'failed'
-            })
-    }
-})
+  name: "userSlice",
+  initialState,
+  reducers: {
+    setUser(state, action) {
+      state.user = null
+      state.error = null;
+      state.status = "loading";
+    },
+    setUserSuccess(state, action) {
+      state.user = action.payload;
+      state.error = null;
+      state.status = "success";
+    },
+    setUserFailed(state, action) {
+      state.user = null;
+      state.error = action.payload;
+      state.status = "failed";
+    },
+  }
+});
 
-const { actions, reducer } = userSlice
-export const { setUser } = actions
-export default reducer
+const { actions, reducer } = userSlice;
+export const { setUser, setUserSuccess, setUserFailed } = actions;
+export default reducer;
