@@ -1,6 +1,8 @@
 import { useState } from "react";
+import Button from "../../components/Button";
+import TextField from "../../components/TextField";
 import useForm from "../../hooks/useForm";
-import { Containter, FormContainer } from "./style";
+import { Container, FormContainer } from "./style";
 
 const SignIn = () => {
   const { values, getValue, setValue } = useForm({
@@ -16,29 +18,34 @@ const SignIn = () => {
   }
 
   return (
-    <Containter>
+    <Container>
       <FormContainer>
-        <input
+        <br />
+        <TextField
           type="text"
+          title="Username"
+          placeholder="Username"
+          color="#0061FF"
           value={getValue("username")}
           onChange={(e) => {
-            setValue("username", e.target.value);
-          }}
-        />
-        <input
+            setValue('username', e.target.value)
+          }} />
+        <br />
+        <TextField
           type="password"
+          title="Password"
+          placeholder="Password"
+          color="#0061FF"
           value={getValue("password")}
           onChange={(e) => {
-            setValue("password", e.target.value);
-          }}
-        />
+            setValue('password', e.target.value)
+          }} />
         <br />
-        <button onClick={() => { handleLogin() }}>
-            print value
-        </button>
-        <h1>{getValue("password")}</h1>
+        <Button>
+          Login
+        </Button>
       </FormContainer>
-    </Containter>
+    </Container>
   );
 };
 
