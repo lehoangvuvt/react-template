@@ -1,4 +1,5 @@
 import { CustomButton } from './style'
+import ReactLoading from 'react-loading'
 
 const Button = ({
     width = '100%',
@@ -7,16 +8,15 @@ const Button = ({
     background = "#0061FF",
     color = "white",
     onClick,
-    loading = true }) => {
+    fontSize = 18,
+    loading = false, }) => {
     return (
         <CustomButton
+            fontSize={fontSize}
             className={loading ? 'loading' : ''}
-            onClick={() => {
-                if (loading) return
-                onClick()
-            }}
+            onClick={() => !loading && onClick()}
             width={width} height={height} background={background} color={color}>
-            {children}
+            {loading && <ReactLoading type='spin' color={color} height={'1em'} width={'1em'} />} {children}
         </CustomButton>
     )
 }

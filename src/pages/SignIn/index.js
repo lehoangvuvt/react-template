@@ -1,20 +1,21 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
 import useForm from "../../hooks/useForm";
+import { login } from "../../reducers/slices/user";
 import { Container, FormContainer } from "./style";
 
 const SignIn = () => {
-  const { values, getValue, setValue } = useForm({
-    username: "asd",
-    password: "asd"
-  })
-
-  useState(() => {
-  }, [])
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.user)
+  const initialValues = { username: "", password: "" }
+  const form = useForm(initialValues)
 
   const handleLogin = () => {
-    console.log(values)
+    const formValues = form.values()
+    const { username, password } = formValues
+    dispatch(login({ username, password }))
   }
 
   return (
@@ -25,10 +26,11 @@ const SignIn = () => {
           type="text"
           title="Username"
           placeholder="Username"
+          error={true}
           color="#0061FF"
-          value={getValue("username")}
+          value={form.getValue("username")}
           onChange={(e) => {
-            setValue('username', e.target.value)
+            form.setValue('username', e.target.value)
           }} />
         <br />
         <TextField
@@ -36,12 +38,12 @@ const SignIn = () => {
           title="Password"
           placeholder="Password"
           color="#0061FF"
-          value={getValue("password")}
+          value={form.getValue("password")}
           onChange={(e) => {
-            setValue('password', e.target.value)
+            form.setValue('password', e.target.value)
           }} />
         <br />
-        <Button>
+        <Button loading={user.status === 'loading'} onClick={handleLogin}>
           Login
         </Button>
       </FormContainer>
