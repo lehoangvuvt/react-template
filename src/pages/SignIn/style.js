@@ -23,4 +23,10 @@ export const FormContainer = styled.div`
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); 
     padding: 20px;
     box-sizing: border-box;
+    &.st768{
+        width: 80%;
+    }
+    &.st320{
+        width: 90%;
+    }
 `

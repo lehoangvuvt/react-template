@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
 import useForm from "../../hooks/useForm";
+import useScreenSize from "../../hooks/useScreenSize";
 import { login } from "../../reducers/slices/user";
 import { Container, FormContainer } from "./style";
 
 const SignIn = () => {
   const dispatch = useDispatch()
+  const screen = useScreenSize()
   const user = useSelector(state => state.user)
   const initialValues = { username: "", password: "" }
   const form = useForm(initialValues)
@@ -18,9 +20,21 @@ const SignIn = () => {
     dispatch(login({ username, password }))
   }
 
+  const getClassName = () => {
+    let className
+    if (screen.width > 768) {
+      className = ''
+    } else if (screen.width <= 768 && screen.width > 320) {
+      className = 'st768'
+    } else {
+      className = 'st320'
+    }
+    return className
+  }
+
   return (
     <Container>
-      <FormContainer>
+      <FormContainer className={getClassName()}>
         <br />
         <TextField
           type="text"
