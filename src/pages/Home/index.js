@@ -1,25 +1,41 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import MyModal from "../../components/Modal";
 import useModal from "../../hooks/useModal";
 import useScreenSize from "../../hooks/useScreenSize";
-import { setUser } from "../../reducers/slices/user";
-import { fetchUser } from "../../saga/user";
+import { login } from "../../reducers/slices/user";
 
 const Home = () => {
   const { open, close, isOpen } = useModal();
+  const user = useSelector(state => state.user)
+  const [loginInfo, setLoginInfo] = useState({ username: '', password: '' })
   const dispatch = useDispatch();
   const screenSize = useScreenSize();
 
   const handleSaga = () => {
-    dispatch(setUser({ username: "nhatminh0509", password: "123456" }));
-  };
+    dispatch(login({ username: loginInfo.username, password: loginInfo.password }));
+  }
 
   return (
     <>
-      <button onClick={handleSaga}>Saga</button>
-      <button onClick={open}>Open</button>
-      <MyModal isOpen={isOpen} close={close}></MyModal>
+      <input type='text' placeholder="username" value={loginInfo.username} onChange={(e) => {
+        setLoginInfo({
+          ...loginInfo,
+          username: e.target.value
+        })
+      }} />
+      <input type='text' placeholder="password" value={loginInfo.password}
+      onChange={(e) => {
+        setLoginInfo({
+          ...loginInfo,
+          password: e.target.value
+        })
+      }}
+      />
+     {user.status === 'failed' && <h1>Login failed</h1>} 
+     {user.status === 'success' && <h1>Login success</h1>} 
+     <br />
+      <button class='bg-pink-900 text-white rounded' onClick={handleSaga}>Login</button>
     </>
   );
 };
