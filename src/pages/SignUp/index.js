@@ -8,11 +8,11 @@ import useScreenSize from "../../hooks/useScreenSize";
 import { login } from "../../reducers/slices/user";
 import { Container, FormContainer, Logo } from "./style";
 
-const SignIn = () => {
+const SignUp = () => {
   const dispatch = useDispatch();
   const screen = useScreenSize();
   const user = useSelector((state) => state.user);
-  const initialValues = { username: "", password: "" };
+  const initialValues = { username: "", password: "", email: "", name: "" };
   const form = useForm(initialValues);
 
   const handleLogin = () => {
@@ -36,7 +36,31 @@ const SignIn = () => {
   return (
     <Container>
       <FormContainer className={getClassName()}>
-        <Logo src='https://brandlogos.net/wp-content/uploads/2021/10/meta-logo.png' />
+        <Logo src="https://brandlogos.net/wp-content/uploads/2021/10/meta-logo.png" />
+        <br />
+        <TextField
+          error={form.getError("name")}
+          type="text"
+          title="Name"
+          placeholder="Name"
+          colors={["#0061FF", "red"]}
+          value={form.getValue("name")}
+          onChange={(e) => {
+            form.setValue("name", e.target.value);
+          }}
+        />
+        <br />
+        <TextField
+          error={form.getError("email")}
+          type="email"
+          title="Email"
+          placeholder="Email"
+          colors={["#0061FF", "red"]}
+          value={form.getValue("email")}
+          onChange={(e) => {
+            form.setValue("email", e.target.value);
+          }}
+        />
         <br />
         <TextField
           type="text"
@@ -63,7 +87,7 @@ const SignIn = () => {
         />
         <br />
         <Button
-          style={{ marginTop: '10px' }}
+          style={{ marginTop: "10px" }}
           height={"50px"}
           disabled={
             form.getValue("username")?.trim().length === 0 ||
@@ -72,14 +96,14 @@ const SignIn = () => {
           loading={user.status === "login-loading"}
           onClick={handleLogin}
         >
-          Sign In
+          Sign Up
         </Button>
-        <Link style={{ marginTop: "25px" }} to="/sign-up">
-          Don't have an account? Sign up here
+        <Link style={{ marginTop: "25px" }} to="/sign-in">
+          Already have an account? Sign in here
         </Link>
       </FormContainer>
     </Container>
   );
 };
 
-export default SignIn;
+export default SignUp;

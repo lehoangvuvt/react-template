@@ -8,7 +8,7 @@ const TextField = ({
     colors = ["#0061FF", "red"],
     type = "text",
     fontSize = 16,
-    height = 50,
+    height = 55,
     required = false,
     error,
 }) => {

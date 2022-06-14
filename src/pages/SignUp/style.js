@@ -6,31 +6,19 @@ export const Container = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background: #000428; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #004e92,
-    #000428
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #004e92,
-    #000428
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background-image: url("https://images.unsplash.com/photo-1615715757401-f30e7b27b912?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8d2hpdGUlMjAlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&w=1000&q=80");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: appear 0.2s ease;
   @keyframes appear {
     from {
-        opacity: 0;
+      opacity: 0;
     }
     to {
-        opacity: 1;
+      opacity: 1;
     }
   }
 `;

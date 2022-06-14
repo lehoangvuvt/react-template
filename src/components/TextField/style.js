@@ -11,33 +11,37 @@ export const InputContainer = styled.div`
     height: ${props => props.height}px;
     position: relative;
     border-width: 2px;
-    border-radius: 5px;
+    border-radius: 6px;
     border-style: solid;
     border-color: rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
     font-size: ${props => props.fontSize}px;
     &.focus{
         border-color: ${props => props.color};
         animation: focusInputContainer 0.2s ease;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
         @keyframes focusInputContainer {
             from {
                 border-color: black;
+                box-shadow: none;
             }
             to {
                 border-color: ${props => props.color};
+                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
             }
         }
     }
 `
 
 export const Input = styled.input`
-    width: 100%;
-    height: 100%;
-    padding-left:10px;
-    padding-right:10px;
+    width: 95%;
+    height: 90%;
     box-sizing: border-box;
     border: none;
     outline: none;
-    border-radius: 5px;
     font-size: 1em;
     &::placeholder{
         display: none;
@@ -65,8 +69,8 @@ export const Title = styled.div`
     display: none;
     background: white;
     align-items: center;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
     font-size: 0.8em;
     &.focus-no-value {
         display: flex;

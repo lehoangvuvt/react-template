@@ -1,18 +1,26 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Home from "./Home"
-import SignIn from "./SignIn"
+import { useEffect } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "../components/Layout";
+import useAuth from "../hooks/useAuth";
+import { useRouter } from "../hooks/useRouter";
+import Home from "./Home";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 
 const App = () => {
-    return (
-        <>
-            <BrowserRouter>
-                <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/sign-in' element={<SignIn />} />
-                </Routes>
-            </BrowserRouter>
-        </>
-    )
-}
+  const router = useRouter();
+  
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+        </Route>
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
+      </Routes>
+    </>
+  );
+};
 
-export default App
+export default App;
