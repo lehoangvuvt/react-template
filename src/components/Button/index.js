@@ -8,7 +8,7 @@ const Button = ({
     background = "#0061FF",
     color = "white",
     onClick,
-    fontSize = 18,
+    fontSize = 16,
     loading = false, }) => {
     return (
         <CustomButton

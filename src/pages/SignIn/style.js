@@ -17,16 +17,15 @@ export const Container = styled.div`
 
 export const FormContainer = styled.div`
     width: 35%;
-    height: 80%;
     background: white;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); 
-    padding: 20px;
+    padding: 60px 40px;
     box-sizing: border-box;
     &.st768{
-        width: 80%;
+        width: 85%;
     }
     &.st320{
-        width: 90%;
+        width: 95%;
     }
 `

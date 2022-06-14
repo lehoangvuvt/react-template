@@ -1,7 +1,13 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+    width: ${props => props.width}; 
+    display: flex;
+    flex-flow: column wrap;
+`
+
 export const InputContainer = styled.div`
-    width: ${props => props.width};
+    width: 100%;
     height: ${props => props.height}px;
     position: relative;
     border-width: 2px;
@@ -98,4 +104,14 @@ export const Title = styled.div`
             top: -10px;
         }
     }
+`
+
+export const ErrorText = styled.div`
+    color: ${props => props.color};
+    font-size: 0.8em;
+    padding-top: 10px;
+    padding-bottom: 6px;
+    padding-left: 5px;
+    font-weight: bold;  
+    letter-spacing: 0.5px;
 `

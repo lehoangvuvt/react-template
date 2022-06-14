@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
@@ -40,18 +40,19 @@ const SignIn = () => {
           type="text"
           title="Username"
           placeholder="Username"
-          error={true}
-          color="#0061FF"
+          error={form.getError("username")}
+          colors={["#0061FF", "red"]}
           value={form.getValue("username")}
           onChange={(e) => {
             form.setValue('username', e.target.value)
           }} />
         <br />
         <TextField
+          error={form.getError("password")}
           type="password"
           title="Password"
           placeholder="Password"
-          color="#0061FF"
+          colors={["#0061FF", "red"]}
           value={form.getValue("password")}
           onChange={(e) => {
             form.setValue('password', e.target.value)
