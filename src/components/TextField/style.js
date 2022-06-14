@@ -22,7 +22,7 @@ export const InputContainer = styled.div`
     &.focus{
         border-color: ${props => props.color};
         animation: focusInputContainer 0.2s ease;
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);  
         @keyframes focusInputContainer {
             from {
                 border-color: black;
@@ -39,6 +39,7 @@ export const InputContainer = styled.div`
 export const Input = styled.input`
     width: 95%;
     height: 90%;
+    background: transparent;
     box-sizing: border-box;
     border: none;
     outline: none;
@@ -112,6 +113,8 @@ export const Title = styled.div`
 
 export const ErrorText = styled.div`
     color: ${props => props.color};
+    width: 100%;
+    text-align: left;
     font-size: 0.8em;
     padding-top: 10px;
     padding-bottom: 6px;

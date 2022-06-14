@@ -4,11 +4,13 @@ import Button from "../../components/Button";
 import Link from "../../components/Link";
 import TextField from "../../components/TextField";
 import useForm from "../../hooks/useForm";
+import { useRouter } from "../../hooks/useRouter";
 import useScreenSize from "../../hooks/useScreenSize";
-import { login } from "../../reducers/slices/user";
+import { login, loginSuccess } from "../../reducers/slices/user";
 import { Container, FormContainer, Logo } from "./style";
 
 const SignIn = () => {
+  const router = useRouter()
   const dispatch = useDispatch();
   const screen = useScreenSize();
   const user = useSelector((state) => state.user);
@@ -20,6 +22,18 @@ const SignIn = () => {
     const { username, password } = formValues;
     dispatch(login({ username, password }));
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('userData')) {
+      dispatch(loginSuccess(JSON.parse(localStorage.getItem('userData'))))
+    }
+  }, [dispatch])
+
+  useEffect(() => {
+    if (user.user) {
+      router.navigate('/')
+    }
+  }, [user, router])
 
   const getClassName = () => {
     let className;
