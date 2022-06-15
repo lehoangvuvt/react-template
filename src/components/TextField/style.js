@@ -65,7 +65,7 @@ export const Input = styled.input`
     }
 `
 
-export const Title = styled.div`
+export const Label = styled.div`
     position: absolute;
     display: none;
     background: white;

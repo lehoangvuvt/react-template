@@ -41,7 +41,7 @@ const SignUp = () => {
         <TextField
           error={form.getError("name")}
           type="text"
-          title="Name"
+          label="Name"
           placeholder="Name"
           colors={["#0061FF", "red"]}
           value={form.getValue("name")}
@@ -53,7 +53,7 @@ const SignUp = () => {
         <TextField
           error={form.getError("email")}
           type="email"
-          title="Email"
+          label="Email"
           placeholder="Email"
           colors={["#0061FF", "red"]}
           value={form.getValue("email")}
@@ -64,7 +64,7 @@ const SignUp = () => {
         <br />
         <TextField
           type="text"
-          title="Username"
+          label="Username"
           placeholder="Username"
           error={form.getError("username")}
           colors={["#0061FF", "red"]}
@@ -77,7 +77,7 @@ const SignUp = () => {
         <TextField
           error={form.getError("password")}
           type="password"
-          title="Password"
+          label="Password"
           placeholder="Password"
           colors={["#0061FF", "red"]}
           value={form.getValue("password")}

@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { InputContainer, Input, Title, Container, ErrorText } from './style'
+import { InputContainer, Input, Label, Container, ErrorText } from './style'
 
 const TextField = ({
     value = '',
     onChange, width = '100%',
-    title, placeholder, 
+    label, placeholder, 
     colors = ["#0061FF", "red"],
     type = "text",
     fontSize = 15,
@@ -35,8 +35,8 @@ const TextField = ({
                     onChange={onChange}
                     onBlur={() => { setFocus(false) }}
                     onFocus={() => { setFocus(true) }}
-                    value={value} placeholder={focus ? '' : placeholder ?? title} />
-                <Title color={error ? colors[1] : colors[0]} className={getClassName()}>{title ?? ""} {required && '*'}</Title>
+                    value={value} placeholder={focus ? '' : placeholder ?? label} />
+                <Label color={error ? colors[1] : colors[0]} className={getClassName()}>{label ?? ""} {required && '*'}</Label>
             </InputContainer>
             {error && <ErrorText color={colors[1]}>{error}</ErrorText>}
         </Container>

@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 
 const useForm = (initialValues) => {
   const [myValues, setMyValues] = useState(new Map());
-  const [errors, setErrors] = useState(new Map())
+  const [errors, setErrors] = useState(new Map());
 
   useEffect(() => {
-    initValues()
-  }, [])
+    initValues();
+  }, []);
 
   const initValues = () => {
     let _initialValues = new Map();
@@ -38,17 +38,25 @@ const useForm = (initialValues) => {
     let newErrors = new Map(JSON.parse(JSON.stringify(Array.from(errors))));
     newErrors.set(fieldName, message);
     setErrors(newErrors);
-  }
+  };
 
   const getError = (fieldName) => {
     return errors.get(fieldName);
-  }
+  };
 
   const removeError = (fieldName) => {
     let newErrors = new Map(JSON.parse(JSON.stringify(Array.from(errors))));
     newErrors.delete(fieldName);
-    setErrors(newErrors)
-  }
+    setErrors(newErrors);
+  };
+
+  const resetFields = () => {
+    let newValues = new Map(JSON.parse(JSON.stringify(Array.from(myValues))));
+    for (let [key] of newValues) {
+      newValues.set(key, "");
+    }
+    setMyValues(newValues);
+  };
 
   return {
     setValue,
@@ -56,7 +64,8 @@ const useForm = (initialValues) => {
     values,
     setError,
     getError,
-    removeError
+    removeError,
+    resetFields,
   };
 };
 

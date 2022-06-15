@@ -16,7 +16,7 @@ export function* handleLogin(action) {
     yield localStorage.setItem("userData", JSON.stringify(response.user))
     yield put(loginSuccess(response.user));
   } catch (err) {
-    yield put(loginFailed("Error"));
+    yield put(loginFailed("Invalid username or password"));
   }
 }
 
